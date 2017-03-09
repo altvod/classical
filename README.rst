@@ -7,6 +7,14 @@ Convenience tools for working with Python classes.
 Documentation at http://classical.readthedocs.io/en/latest/
 
 
+Installation
+~~~~~~~~~~~~
+
+::
+
+    pip install classical
+
+
 Testing
 ~~~~~~~
 

@@ -6,9 +6,18 @@
 Welcome to classical's documentation!
 =====================================
 
+``classical`` is a set of convenience tools for working with Python classes.
+
+Install:
+
+::
+
+    pip install classical
+
+
 .. toctree::
    :maxdepth: 1
-   :caption: Contents:
+   :caption: Reference:
 
    apidoc/classical.tools
 
