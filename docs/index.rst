@@ -7,9 +7,10 @@ Welcome to classical's documentation!
 =====================================
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: Contents:
 
+   apidoc/classical.tools
 
 
 Indices and tables
