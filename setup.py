@@ -11,7 +11,7 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
 setup(
     name='classical',
 
-    version='1.0.0',
+    version='1.0.1',
 
     description='Class Tools for Python',
     long_description=long_description,
