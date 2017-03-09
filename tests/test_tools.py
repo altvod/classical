@@ -54,3 +54,4 @@ class TestTools(TestCase):
         self.assertIsInstance(Tree.Peach(), Tree)
         self.assertEqual('peach', Tree.Peach().fruit)
         self.assertEqual('cone', Tree.Pine().fruit)
+        self.assertIs(Tree.Peach, Tree.Peach, msg='Subsequent calls return different subclasses')

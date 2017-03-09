@@ -9,3 +9,7 @@ build_doc:
 
 doc: build_doc
 	xdg-open docs/_build/html/index.html
+
+
+test:
+	py.test --cov=${PACKAGE_NAME} tests

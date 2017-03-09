@@ -38,4 +38,13 @@ setup(
     keywords='class utilities',
 
     packages=find_packages(exclude=['tests']),
+
+    extras_require=dict(
+        develop=[
+            'pytest',
+            'pytest-cov',
+            'sphinx',
+            'sphinx_rtd_theme',
+        ]
+    )
 )
