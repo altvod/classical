@@ -1,6 +1,7 @@
 # classical
-Convenience tools for working with Python classes
-See the documentation at http://classical.readthedocs.io/en/latest/
+Convenience tools for working with Python classes.
+
+Documentation at http://classical.readthedocs.io/en/latest/
 
 ## Testing
 
