@@ -21,6 +21,7 @@ Generating docs
 ~~~~~~~~~~~~~~~
 
 ::
+
     make docs
 
 You may need to install ``[develop]`` extras to generate docs
