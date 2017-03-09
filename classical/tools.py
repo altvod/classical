@@ -10,7 +10,7 @@ def partial_class(cls, name, *args, **kwargs):
     :param name: name of the new class
     :param args: positional arguments for ``__init__``
     :param kwargs: keyword arguments for ``__init__``
-    :return: the new class
+    :return: a subclass of ``cls``
 
     Say you have
     ::
@@ -25,7 +25,6 @@ def partial_class(cls, name, *args, **kwargs):
         class RedSquare1x1(Square):
             def __init__(self):
                 super().__init__(1, color='red)
-                pass  # implementation goes here
 
     Consider the less-verbose alternative:
     ::
@@ -44,8 +43,7 @@ def partial_class(cls, name, *args, **kwargs):
 
 class PartialProperty:
     """
-    A descriptor to act as a class property returning a ``partial_class``
-    of the owner class.
+    A descriptor that returns a :func:`partial_class` of the owner class when accessed.
 
     Basically it implements :class:`~enum.Enum`-like behavior
     for arbitrary classes:
