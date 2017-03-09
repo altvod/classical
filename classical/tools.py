@@ -1,10 +1,14 @@
+"""
+Various helpers for working with classes
+"""
+
 import types
 
 
 def partial_class(cls, name, *args, **kwargs):
     """
     Create a subclass of ``cls`` identical to the original
-    except for the name and additional arguments passed to ``__init__``
+    except for its name and additional arguments passed to ``__init__``
 
     :param cls: the class to be subclassed
     :param name: name of the new class
@@ -45,16 +49,19 @@ class PartialProperty:
     """
     A descriptor that returns a :func:`partial_class` of the owner class when accessed.
 
-    Basically it implements :class:`~enum.Enum`-like behavior
-    for arbitrary classes:
+    Basically it allows a class to have attributes that are its own subclasses:
     ::
 
         class Tree:
             Peach = PartialProperty(fruit='peach')
             Pine = PartialProperty(fruit='cone')
+            # both will return subclasses of Tree when accessed
 
             def __init__(self, fruit):
                 self.fruit = fruit
+
+        issubclass(Tree.Pine, Tree)  # == True
+        Tree.Pine().fruit  # == 'cone'
     """
 
     def __init__(self, *args, **kwargs):
