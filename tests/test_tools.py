@@ -55,3 +55,13 @@ class TestTools(TestCase):
         self.assertEqual('peach', Tree.Peach().fruit)
         self.assertEqual('cone', Tree.Pine().fruit)
         self.assertIs(Tree.Peach, Tree.Peach, msg='Subsequent calls return different subclasses')
+
+    def test_partial_property_recursion(self):
+        class Tree:
+            Peach = PartialProperty(fruit='peach')
+
+            def __init__(self, fruit):
+                self.fruit = fruit
+
+        self.assertIs(Tree.Peach, Tree.Peach.Peach)
+        self.assertIs(Tree.Peach, Tree.Peach.Peach.Peach.Peach.Peach)

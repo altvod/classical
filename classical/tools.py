@@ -2,7 +2,11 @@
 Various helpers for working with classes
 """
 
+import sys
 import types
+
+
+PYTHON_GE_3_6 = sys.version_info >= (3, 6)
 
 
 def partial_class(cls, name, *args, **kwargs):
@@ -68,15 +72,22 @@ class PartialProperty:
         self.args = args
         self.kwargs = kwargs
         self._cls_map = {}
+        self._name = None  # type: str
+        self._original_owner = None  # type: type
+
+    def __set_name__(self, owner: type, name: str):
+        self._name = name
+        self._original_owner = owner
+        self._cls_map[owner] = partial_class(owner, name, *self.args, **self.kwargs)
 
     def __get__(self, instance, owner):
-        if owner not in self._cls_map:
+        if not self._name:  # has not been set yet
             # get the name of the attribute - it will serve as the name
             # of the new partial class
-            self_name = [
+            own_name = [
                 name for name, attr in owner.__dict__.items()
                 if attr is self
             ][0]
-            self._cls_map[owner] = partial_class(owner, self_name, *self.args, **self.kwargs)
+            self.__set_name__(owner=owner, name=own_name)
 
-        return self._cls_map[owner]
+        return self._cls_map[self._original_owner]
