@@ -13,3 +13,7 @@ doc: build_doc
 
 test:
 	py.test --cov=${PACKAGE_NAME} tests
+
+
+build:
+	python setup.py sdist upload
