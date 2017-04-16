@@ -16,6 +16,7 @@ Simplified subclassing:
     MySubClass = partial_class(MyClass, 'MySubClass', arg1='value', arg2=4)
 
 Various descriptors:
+
 .. code-block:: python
 
     class Thing:
