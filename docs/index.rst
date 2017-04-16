@@ -19,7 +19,7 @@ Install:
    :maxdepth: 1
    :caption: Reference:
 
-   apidoc/classical.partials
+   apidoc/classical.subclass
    apidoc/classical.descriptors
 
 

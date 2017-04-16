@@ -1,13 +1,13 @@
 from unittest import TestCase
 
-from classical.descriptors import PartialProperty, AutoProperty
+from classical.descriptors import ArgumentedSubclass, AttributedSubclass, AutoProperty, DummySubclass
 
 
-class TestTools(TestCase):
-    def test_partial_property(self):
+class TestDescriptors(TestCase):
+    def test_argumented_subclass(self):
         class Tree:
-            Peach = PartialProperty(fruit='peach')
-            Pine = PartialProperty(fruit='cone')
+            Peach = ArgumentedSubclass(fruit='peach')
+            Pine = ArgumentedSubclass(fruit='cone')
 
             def __init__(self, fruit):
                 self.fruit = fruit
@@ -19,14 +19,40 @@ class TestTools(TestCase):
         self.assertEqual('cone', Tree.Pine().fruit)
         self.assertIs(Tree.Peach, Tree.Peach, msg='Subsequent calls return different subclasses')
 
-    def test_partial_property_recursion(self):
+    def test_argumented_subclass_recursion(self):
         class Polygon:
-            Blue = PartialProperty(color='blue')
-            Pentagon = PartialProperty(sides=5)
+            Blue = ArgumentedSubclass(color='blue')
+            Pentagon = ArgumentedSubclass(sides=5)
 
             def __init__(self, color=None, sides=3):
                 self.color = color
                 self.sides = sides
+
+        blue_pentagon = Polygon.Pentagon.Blue()
+        self.assertEqual(5, blue_pentagon.sides)
+        self.assertEqual('blue', blue_pentagon.color)
+
+    def test_attributed_subclass(self):
+        class Tree:
+            fruit = None
+
+            Peach = AttributedSubclass(fruit='peach')
+            Pine = AttributedSubclass(fruit='cone')
+
+        self.assertTrue(issubclass(Tree.Peach, Tree))
+        self.assertEqual('Peach', Tree.Peach.__name__)
+        self.assertIsInstance(Tree.Peach(), Tree)
+        self.assertEqual('peach', Tree.Peach().fruit)
+        self.assertEqual('cone', Tree.Pine().fruit)
+        self.assertIs(Tree.Peach, Tree.Peach, msg='Subsequent calls return different subclasses')
+
+    def test_attributed_subclass_recursion(self):
+        class Polygon:
+            color = None
+            sides = None
+
+            Blue = AttributedSubclass(color='blue')
+            Pentagon = AttributedSubclass(sides=5)
 
         blue_pentagon = Polygon.Pentagon.Blue()
         self.assertEqual(5, blue_pentagon.sides)
@@ -66,8 +92,13 @@ class TestTools(TestCase):
 
     def test_property_combination(self):
         class Thing:
-            Blue = PartialProperty(color='blue')
-            Red = PartialProperty(color='red')
+            size = None
+
+            Blue = ArgumentedSubclass(color='blue')
+            Red = ArgumentedSubclass(color='red')
+
+            Small = AttributedSubclass(size='small')
+            Large = AttributedSubclass(size='large')
 
             book = AutoProperty(has='pages')
             lamp = AutoProperty(has='light')
@@ -77,5 +108,29 @@ class TestTools(TestCase):
                 self.has = has
 
         self.assertIsInstance(Thing.Red.book, Thing.Red)
-        self.assertEqual('red', Thing.Red.book.color)
-        self.assertEqual('pages', Thing.Red.book.has)
+        self.assertIsInstance(Thing.Large.book, Thing.Large)
+        self.assertIsInstance(Thing.Small.Red.book, Thing.Small)
+        self.assertIsInstance(Thing.Small.Red.book, Thing.Small.Red)
+        self.assertTrue(Thing.Large.book, Thing.Large)
+        self.assertEqual('red', Thing.Small.Red.book.color)
+        self.assertEqual('pages', Thing.Small.Red.book.has)
+        self.assertEqual('small', Thing.Small.Red.book.size)
+
+    def test_terminal_property(self):
+        class Thing:
+            my_subclass = DummySubclass()
+            my_terminal_subclass = DummySubclass().terminal
+
+            my_instance = AutoProperty()
+            my_terminal_instance = AutoProperty().terminal
+
+        class ClassyThing(Thing):
+            pass
+
+        self.assertTrue(issubclass(ClassyThing.my_subclass, ClassyThing))
+        self.assertFalse(issubclass(ClassyThing.my_terminal_subclass, ClassyThing))
+
+        self.assertIsInstance(ClassyThing.my_instance, ClassyThing)
+        self.assertIs(ClassyThing.my_instance.__class__, ClassyThing)
+        self.assertNotIsInstance(ClassyThing.my_terminal_instance, ClassyThing)
+        self.assertIs(ClassyThing.my_terminal_instance.__class__, Thing)

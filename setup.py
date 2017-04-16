@@ -11,7 +11,7 @@ with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
 setup(
     name='classical',
 
-    version='1.1.4',
+    version='2.0.0',
 
     description='Class Tools for Python',
     long_description=long_description,
@@ -31,11 +31,10 @@ setup(
         'License :: OSI Approved :: MIT License',
         'Programming Language :: Python :: 3 :: Only',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
     ],
 
-    keywords='class utilities',
+    keywords='class utilities descriptors properties factories',
 
     packages=find_packages(exclude=['tests']),
 

@@ -13,14 +13,14 @@ Simplified subclassing:
             pass  # do whatever
 
     # subclass with presets
-    MySubClass = partial_class(MyClass, 'MySubClass', arg1='value', arg2=4)
+    MySubClass = argumented_subclass(MyClass, 'MySubClass', arg1='value', arg2=4)
 
 Various descriptors:
 
 .. code-block:: python
 
     class Thing:
-        Red = PartialProperty(color='red')
+        Red = ArgumentedSubclass(color='red')
         book = AutoProperty(has='pages')
         def __init__(self, color=None, has=None):
             self.color = color

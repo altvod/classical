@@ -1,7 +1,7 @@
-classical.partials module
+classical.subclass module
 =========================
 
-.. automodule:: classical.partials
+.. automodule:: classical.subclass
     :members:
     :undoc-members:
     :show-inheritance:

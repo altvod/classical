@@ -7,7 +7,7 @@ Submodules
 .. toctree::
 
    classical.descriptors
-   classical.partials
+   classical.subclass
 
 Module contents
 ---------------

@@ -1,5 +1,12 @@
-from .partials import partial_class
-from .descriptors import PartialProperty, AutoProperty
+from .subclass import argumented_subclass, attributed_subclass
+from .descriptors import (
+    ArgumentedSubclass, AttributedSubclass, AutoProperty,
+    DummySubclass, FactoryProperty
+)
 
 
-__all__ = 'partial_class', 'PartialProperty', 'AutoProperty'
+__all__ = (
+    'argumented_subclass', 'attributed_subclass',
+    'ArgumentedSubclass', 'AttributedSubclass', 'AutoProperty',
+    'DummySubclass', 'FactoryProperty',
+)
