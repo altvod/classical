@@ -19,7 +19,14 @@ Install:
    :maxdepth: 1
    :caption: Reference:
 
-   apidoc/classical.tools
+   apidoc/classical.partials
+   apidoc/classical.descriptors
+
+
+Contribute
+~~~~~~~~~~
+
+Visit ``classical``'s GitHub page at https://github.com/altvod/classical
 
 
 Indices and tables
