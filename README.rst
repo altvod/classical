@@ -6,7 +6,7 @@ Convenience tools for working with Python classes.
 
 Simplified subclassing:
 
-::
+.. code-block:: python
 
     class MyClass:
         def __init__(self, *args, **kwargs):
@@ -16,7 +16,7 @@ Simplified subclassing:
     MySubClass = partial_class(MyClass, 'MySubClass', arg1='value', arg2=4)
 
 Various descriptors:
-::
+.. code-block:: python
 
     class Thing:
         Red = PartialProperty(color='red')
@@ -35,7 +35,7 @@ See the full documentation at http://classical.readthedocs.io/en/latest/
 Installation
 ~~~~~~~~~~~~
 
-::
+.. code-block:: bash
 
     pip install classical
 
@@ -43,7 +43,7 @@ Installation
 Testing
 ~~~~~~~
 
-::
+.. code-block:: bash
 
     make test
 
@@ -53,7 +53,7 @@ You may need to install ``[develop]`` extras to run tests
 Generating docs
 ~~~~~~~~~~~~~~~
 
-::
+.. code-block:: bash
 
     make docs
 
