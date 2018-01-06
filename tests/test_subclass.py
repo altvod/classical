@@ -63,7 +63,10 @@ class TestPartials(TestCase):
         Subclass = attributed_subclass(Base, 'Subclass', attr_2='qwerty', attr_3=5)
         self.assertEqual('Subclass', Subclass.__name__)
         self.assertEqual(Base.attr_1, Subclass.attr_1)
-        self.assertEqual('abc', Base.attr_2, msg='Original class\'s attribute was redefined')
+        self.assertEqual(
+            'abc', Base.attr_2,
+            msg='Original class\'s attribute was redefined'
+        )
         self.assertEqual('qwerty', Subclass.attr_2)
         self.assertEqual(5, Subclass.attr_3)
 

@@ -12,7 +12,7 @@ doc: build_doc
 
 
 test:
-	py.test --cov=${PACKAGE_NAME} tests
+	PACKAGE_NAME=${PACKAGE_NAME} tox
 
 
 build:

@@ -12,7 +12,7 @@ class FactoryProperty:
     """
     A descriptor that returns an object related to the owner class
     and created by ``factory`` when accessed.
-    
+
     :param factory: the object factory. Should have the following signature:
         ``factory(cls, name, *args, **kwargs)``.
         For example, :func:`~classical.subclass.argumented_subclass`
@@ -90,10 +90,10 @@ class FactoryProperty:
             class Thing:
                 my_thing = AutoProperty()
                 terminal_thing = AutoProperty().terminal
-            
+
             class ClassyThing(Thing):
                 pass
-    
+
             isinstance(ClassyThing.my_thing, ClassyThing)  # True
             isinstance(ClassyThing.terminal_thing, ClassyThing)  # False
 

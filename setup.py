@@ -40,8 +40,10 @@ setup(
 
     extras_require=dict(
         develop=[
+            'pylama',
             'pytest',
             'pytest-cov',
+            'pytest-html',
             'sphinx',
             'sphinx_rtd_theme',
         ]

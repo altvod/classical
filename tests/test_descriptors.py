@@ -1,6 +1,9 @@
 from unittest import TestCase
 
-from classical.descriptors import ArgumentedSubclass, AttributedSubclass, AutoProperty, DummySubclass
+from classical.descriptors import (
+    ArgumentedSubclass, AttributedSubclass,
+    AutoProperty, DummySubclass
+)
 
 
 class TestDescriptors(TestCase):
@@ -17,7 +20,10 @@ class TestDescriptors(TestCase):
         self.assertIsInstance(Tree.Peach(), Tree)
         self.assertEqual('peach', Tree.Peach().fruit)
         self.assertEqual('cone', Tree.Pine().fruit)
-        self.assertIs(Tree.Peach, Tree.Peach, msg='Subsequent calls return different subclasses')
+        self.assertIs(
+            Tree.Peach, Tree.Peach,
+            msg='Subsequent calls return different subclasses'
+        )
 
     def test_argumented_subclass_recursion(self):
         class Polygon:
@@ -44,7 +50,10 @@ class TestDescriptors(TestCase):
         self.assertIsInstance(Tree.Peach(), Tree)
         self.assertEqual('peach', Tree.Peach().fruit)
         self.assertEqual('cone', Tree.Pine().fruit)
-        self.assertIs(Tree.Peach, Tree.Peach, msg='Subsequent calls return different subclasses')
+        self.assertIs(
+            Tree.Peach, Tree.Peach,
+            msg='Subsequent calls return different subclasses'
+        )
 
     def test_attributed_subclass_recursion(self):
         class Polygon:
@@ -72,7 +81,10 @@ class TestDescriptors(TestCase):
         self.assertIs(Thing, type(Thing.book))
         self.assertEqual('brown', Thing.book.color)
         self.assertEqual('pages', Thing.book.has)
-        self.assertIs(Thing.book, Thing.book, msg='Subsequent calls return different instances')
+        self.assertIs(
+            Thing.book, Thing.book,
+            msg='Subsequent calls return different instances'
+        )
         self.assertIs(Thing.book, Thing.book.book)
 
     def test_auto_property_in_subclass(self):
