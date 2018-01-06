@@ -3,7 +3,7 @@ from unittest import TestCase
 from classical.subclass import argumented_subclass, attributed_subclass
 
 
-class TestPartials(TestCase):
+class TestArgumentedSubclass(TestCase):
     def test_argumented_subclass(self):
         class Base:
             clsattr = 8
@@ -41,6 +41,36 @@ class TestPartials(TestCase):
         self.assertTrue(Subclass.class_works())
         self.assertTrue(Subclass.static_works())
 
+    def test_slots(self):
+        class BaseWSlots:
+            __slots__ = ('qwerty',)
+            cls_attr = 8
+
+            def __init__(self, qwerty=None):
+                self.qwerty = qwerty
+
+        class BaseNoSlots:
+            cls_attr = 8
+
+            def __init__(self, qwerty=None):
+                self.qwerty = qwerty
+
+        # with slots
+        self.assertFalse(hasattr(BaseWSlots(), '__dict__'))
+        self.assertTrue(hasattr(BaseWSlots(), '__slots__'))
+        Subclass = argumented_subclass(BaseWSlots, 'Subclass', qwerty=5)
+        self.assertFalse(hasattr(Subclass(), '__dict__'))
+        self.assertTrue(hasattr(Subclass(), '__slots__'))
+
+        # without slots
+        self.assertTrue(hasattr(BaseNoSlots(), '__dict__'))
+        self.assertFalse(hasattr(BaseNoSlots(), '__slots__'))
+        Subclass = argumented_subclass(BaseNoSlots, 'Subclass', qwerty=5)
+        self.assertTrue(hasattr(Subclass(), '__dict__'))
+        self.assertFalse(hasattr(Subclass(), '__slots__'))
+
+
+class TestAttributedSubclass(TestCase):
     def test_attributed_subclass(self):
         class Base:
             attr_1 = 8
@@ -80,3 +110,25 @@ class TestPartials(TestCase):
         self.assertTrue(inst.works())
         self.assertTrue(Subclass.class_works())
         self.assertTrue(Subclass.static_works())
+
+    def test_slots(self):
+        class BaseWSlots:
+            __slots__ = ('qwerty',)
+            cls_attr = 8
+
+        class BaseNoSlots:
+            cls_attr = 8
+
+        # with slots
+        self.assertFalse(hasattr(BaseWSlots(), '__dict__'))
+        self.assertTrue(hasattr(BaseWSlots(), '__slots__'))
+        Subclass = attributed_subclass(BaseWSlots, 'Subclass', qwerty=5)
+        self.assertFalse(hasattr(Subclass(), '__dict__'))
+        self.assertTrue(hasattr(Subclass(), '__slots__'))
+
+        # without slots
+        self.assertTrue(hasattr(BaseNoSlots(), '__dict__'))
+        self.assertFalse(hasattr(BaseNoSlots(), '__slots__'))
+        Subclass = attributed_subclass(BaseNoSlots, 'Subclass', qwerty=5)
+        self.assertTrue(hasattr(Subclass(), '__dict__'))
+        self.assertFalse(hasattr(Subclass(), '__slots__'))

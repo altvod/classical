@@ -30,19 +30,28 @@ def argumented_subclass(cls: type, name: str, *args, **kwargs):
             def __init__(self):
                 super().__init__(1, color='red)
 
-    Consider the less-verbose alternative:
+    Consider the less-verbose alternative
+    (kind of like the ``partial`` function, but for classes):
     ::
 
         RedSquare1x1 = argumented_subclass(Square, 'RedSquare1x1', 1, color='red')
+
+    .. note::
+        Existence of ``__slots__``
+        (and, consequently, the absence of the instance ``__dict__``)
+        is preserved during subclassing
     """
     def new_init(self, *_args, **_kwargs):
         cls.__init__(self, *(args + _args), **dict(kwargs, **_kwargs))
 
     new_init.__name__ = '__init__'
 
-    return types.new_class(
-        name, (cls,), exec_body=lambda ns: (ns.__setitem__('__init__', new_init))
-    )
+    def set_subclass_attrs(ns):
+        ns['__init__'] = new_init
+        if hasattr(cls, '__slots__'):
+            ns['__slots__'] = ()  # no new instance attributes, so empty slots
+
+    return types.new_class(name, (cls,), exec_body=set_subclass_attrs)
 
 
 def attributed_subclass(cls: type, name: str, **attributes):
@@ -62,9 +71,15 @@ def attributed_subclass(cls: type, name: str, **attributes):
 
         Bird = attributed_subclass(Animal, 'Bird', wings=2)
         pelican = Bird()  # pelican.wings == 2
-    """
-    def add_attributes(ns):
-        for attr_name, attr_value in attributes.items():
-            ns.__setitem__(attr_name, attr_value)
 
-    return types.new_class(name, (cls,), exec_body=add_attributes)
+    .. note::
+        Existence of ``__slots__``
+        (and, consequently, the absence of the instance ``__dict__``)
+        is preserved during subclassing
+    """
+    def set_subclass_attrs(ns):
+        ns.update(attributes.items())
+        if hasattr(cls, '__slots__'):
+            ns['__slots__'] = ()  # no new instance attributes, so empty slots
+
+    return types.new_class(name, (cls,), exec_body=set_subclass_attrs)

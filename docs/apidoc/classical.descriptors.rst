@@ -1,5 +1,5 @@
-classical.descriptors module
-============================
+classical\.descriptors module
+=============================
 
 .. automodule:: classical.descriptors
     :members:

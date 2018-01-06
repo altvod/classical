@@ -1,5 +1,5 @@
-classical.subclass module
-=========================
+classical\.subclass module
+==========================
 
 .. automodule:: classical.subclass
     :members:
