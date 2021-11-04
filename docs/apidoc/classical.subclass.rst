@@ -1,7 +1,7 @@
-classical\.subclass module
-==========================
+classical.subclass module
+=========================
 
 .. automodule:: classical.subclass
-    :members:
-    :undoc-members:
-    :show-inheritance:
+   :members:
+   :undoc-members:
+   :show-inheritance:

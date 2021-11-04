@@ -11,7 +11,7 @@ with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
 setup(
     name='classical',
 
-    version='2.0.0',
+    version='2.1.0',
 
     description='Class Tools for Python',
     long_description=long_description,
@@ -32,20 +32,28 @@ setup(
         'Programming Language :: Python :: 3 :: Only',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
+        'Programming Language :: Python :: 3.10',
     ],
 
-    keywords='class utilities descriptors properties factories',
+    keywords='class utilities descriptors properties factories dataclasses attrs fields',
 
     packages=find_packages(exclude=['tests']),
 
     extras_require=dict(
         develop=[
+            'attr',
             'pylama',
             'pytest',
             'pytest-cov',
             'pytest-html',
+            'schematics',
             'sphinx',
             'sphinx_rtd_theme',
+            'sqlalchemy',
         ]
     )
 )

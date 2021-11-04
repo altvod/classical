@@ -1,7 +1,7 @@
-classical.descriptors module
+classical.fields.base module
 ============================
 
-.. automodule:: classical.descriptors
+.. automodule:: classical.fields.base
    :members:
    :undoc-members:
    :show-inheritance:

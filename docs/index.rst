@@ -14,13 +14,16 @@ Install:
 
     pip install classical
 
+Contents:
 
 .. toctree::
    :maxdepth: 1
    :caption: Reference:
 
+   apidoc/classical
    apidoc/classical.subclass
    apidoc/classical.descriptors
+   apidoc/classical.fields
 
 
 Contribute
