@@ -11,7 +11,7 @@ with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
 setup(
     name='classical',
 
-    version='2.1.0',
+    version='2.1.1',
 
     description='Class Tools for Python',
     long_description=long_description,
@@ -54,6 +54,10 @@ setup(
             'sphinx',
             'sphinx_rtd_theme',
             'sqlalchemy',
-        ]
+        ],
+        build=[
+            'build',
+            'twine',
+        ],
     )
 )

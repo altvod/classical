@@ -16,4 +16,7 @@ test:
 
 
 build:
-	python setup.py sdist upload
+	python -m build
+
+upload:
+	python -m twine upload --repository pypi dist/*
