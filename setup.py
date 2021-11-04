@@ -39,7 +39,18 @@ setup(
         'Programming Language :: Python :: 3.10',
     ],
 
-    keywords='class utilities descriptors properties factories dataclasses attrs fields',
+    keywords=[
+        'class',
+        'utilities',
+        'descriptors',
+        'properties',
+        'factories',
+        'dataclasses',
+        'attrs',
+        'fields',
+        'schematics',
+        'sqlalchemy',
+    ],
 
     packages=find_packages(exclude=['tests']),
 
