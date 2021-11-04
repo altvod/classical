@@ -8,6 +8,8 @@ Simplified subclassing:
 
 .. code-block:: python
 
+    from classical import argumented_subclass
+
     class MyClass:
         def __init__(self, *args, **kwargs):
             pass  # do whatever
@@ -19,10 +21,12 @@ Various descriptors:
 
 .. code-block:: python
 
+    from classical import ArgumentedSubclass, AutoProperty
+
     class Thing:
         Red = ArgumentedSubclass(color='red')
         book = AutoProperty(has='pages')
-        def __init__(self, color=None, has=None):
+        def __init__(self, color: str = None, has: str = None):
             self.color = color
             self.has = has
 
