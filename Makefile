@@ -1,10 +1,16 @@
 PACKAGE_NAME = classical
 
 
-build_doc:
+build_apidoc:
 	rm -rf docs/apidoc
 	sphinx-apidoc --no-toc --separate -o docs/apidoc ${PACKAGE_NAME}
+
+
+build_html:
 	cd docs; make html
+
+
+build_doc: build_apidoc build_html
 
 
 doc: build_doc

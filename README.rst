@@ -48,7 +48,7 @@ Testing
 
     make test
 
-You may need to install ``[develop]`` extras to run tests
+You may need to install ``[fielded,testing]`` extras to run tests
 
 
 Generating docs
@@ -58,4 +58,4 @@ Generating docs
 
     make docs
 
-You may need to install ``[develop]`` extras to generate docs
+You may need to install ``[fielded,docs]`` extras to generate docs

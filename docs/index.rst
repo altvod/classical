@@ -20,7 +20,6 @@ Contents:
    :maxdepth: 1
    :caption: Reference:
 
-   apidoc/classical
    apidoc/classical.subclass
    apidoc/classical.descriptors
    apidoc/classical.fields

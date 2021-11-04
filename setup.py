@@ -55,16 +55,20 @@ setup(
     packages=find_packages(exclude=['tests']),
 
     extras_require=dict(
-        develop=[
+        fielded=[
             'attr',
+            'schematics',
+            'sqlalchemy',
+        ],
+        testing=[
             'pylama',
             'pytest',
             'pytest-cov',
             'pytest-html',
-            'schematics',
+        ],
+        docs=[
             'sphinx',
             'sphinx_rtd_theme',
-            'sqlalchemy',
         ],
         build=[
             'build',

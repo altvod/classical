@@ -1,8 +1,1 @@
-# Sphinx
-sphinx
-sphinx_rtd_theme
-
-# Code dependencies
-attrs
-schematics
-sqlalchemy
+docutils<0.17
